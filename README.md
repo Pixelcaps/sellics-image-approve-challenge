@@ -1,44 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+### SELLICS IMAGE REVIEW FEATURE CHALLENGE ###
 
-## Available Scripts
+Implemented an MVP for a image reviewing feature. The project followed the wireframe provided with minor differences and the flow of the application is as asked.
 
-In the project directory, you can run:
+For persistance I used the redux-persist library for storing the app data in localStorage. Another viable solution for a bigger application would be a Firebase integration with Firestore. The persisted state is made up of an array of approved images and an array of unapproved image ids so I can filter those images out in case the random one from the API is the same as previous calls. For a production level application this array could be changed to an object with the keys being the ids and the values being a boolean. Lookup would be O(1) and would be more optimal for a very large number of ids.
 
-### `npm start`
+Regarding the API, I observed that because the url is the same, the browser would help me and cache some responses which would result in sometimes pressing X and not having a new picture load or entering an infinite loop until the cache would expire when getting already unapproved pictures due to the recursive implementation. To fix this I concatenated a random string to the url for cache busting. An alternative might be using the pagination parameter from the API but I obseved that sometimes the bug would still reproduce. From what I've read online this is a known issue when trying to do something similar using this endpoint and there is no fix at API level from Unsplash as of today.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I removed my acces keys from the dotenv file as it would be a bad practice to add the directly here or on git. If you want, I can send them by email on further notice.
